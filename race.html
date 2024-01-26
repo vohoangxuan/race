@@ -14,14 +14,14 @@
   
       function downTime(){
             let ele = $('.time');
-            let i =1;
+            let i =3;
             let interval = setInterval(function(){
-                if(i == 4){
+                if(i == 0){
                     clearInterval(interval);
                     ele.css('display','none');
                     animalRun();  
                 }else{                    
-                  ele.text(i++);
+                  ele.text(i--);
                 }                
             },1000);    
 
