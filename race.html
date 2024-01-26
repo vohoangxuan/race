@@ -31,10 +31,12 @@
       function animalRun() {
         let i = 0;
           let lbl = $("#tortoise");
-          let l = parseInt(lbl.css("margin-left"));
+          let l = parseInt(lbl.css("left"));
+          let bTor = parseInt(lbl.css("bottom"));
           
           let hare = $("#hare");
-          let lHare = parseInt(hare.css("margin-left"));
+          let lHare = parseInt(hare.css("left"));
+          let bHare = parseInt(hare.css("bottom"));
 
           iId = setInterval(
               function() {                               
@@ -79,8 +81,16 @@
                   }
                 
                   }
-                  lbl.css("margin-left", l + "px");
-                  hare.css("margin-left", lHare + "px");
+                  lbl.css("left", l + "px");
+                  //lbl.css("bottom", bTor + randomInteger(-5, 5)+"px");
+                  hare.css("left", lHare + "px");
+                  //console.log(bHare);
+                  let y = Math.floor(Math.random() * 11) - 5;
+                  bHare = bHare + y;
+
+                  //console.log(bHare, y);
+                  
+                  hare.css("bottom", bHare +"px");
               }
               , 200
             )
@@ -164,7 +174,7 @@
             dX[N+"r"]=(Math.random()-0.5)*swide/bangheight[N];
 
             stars[N+"r"].style.color=colours[colour[N]];
-            console.log(dX);
+            //console.log(dX);
           }
           function bang(N) {
             var i, a_star, A=0;
@@ -174,7 +184,7 @@
               a_star.top=Ypos[i]+"px";
               if (decay[i]) decay[i]--;
               else A++;
-              console.log("decay", decay);
+              //console.log("decay", decay);
               if (decay[i]==15) a_star.fontSize="7px";
               else if (decay[i]==7) a_star.fontSize="2px";
               else if (decay[i]==1) a_star.visibility="hidden";
@@ -198,7 +208,7 @@
                 dY[i]=(Math.random()-0.5)*intensity[N];
                 dX[i]=(Math.random()-0.5)*(intensity[N]-Math.abs(dY[i]))*1.25;
                 decay[i]=16+Math.floor(Math.random()*16);
-                console.log("stepthrough decay", decay);
+                //console.log("stepthrough decay", decay);
                 a_star=stars[i];
                 if (M<colours.length) a_star.style.color=colours[i%2?colour[N]:M];
                 else if (M<2*colours.length) a_star.style.color=colours[colour[N]];
@@ -230,14 +240,18 @@
       
 </head>
 <body>
+
   <div style="position: relative;background-image: url(images/road.jpg); background-repeat: no-repeat; background-size: cover; height:800px;">
+    <button onClick="window.location.reload();"
+    style="position: sticky;top: 100px; left:0px;">
+      Replay</button>
     <div> <h1 class="time" style="color: red; font-size: 70px; margin-top: 0;padding: 50px;text-align: center;"></h1></div>
     <div style="position: absolute; bottom: 50px; width: 90%;">
       <div id="divTor">
-          <img id = "tortoise" src="images/tortoise.png" width="50px" height="50px" style="margin-left: 0px;">
+          <img id = "tortoise" src="images/tortoise.png" width="50px" height="50px" style="position: absolute;bottom: 40px;">
       </div>
       <div id="divHare">
-          <img id = "hare" src="images/hare.png" width="50px" height="50px" style="margin-left: 0px; object-fit: cover;">
+          <img id = "hare" src="images/hare.png" width="50px" height="50px" style="position: absolute; object-fit: cover; bottom: -20px;">
       </div>
     </div>
     <div id="divHarePod">
