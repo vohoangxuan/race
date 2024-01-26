@@ -14,14 +14,19 @@
   
       function downTime(){
             let ele = $('.time');
-            let i =1;
+            let i = 3;
             let interval = setInterval(function(){
-                if(i == 4){
+                if(i == 0){
                     clearInterval(interval);
-                    ele.css('display','none');
+                    ele.text("GO!!!");
+                    setTimeout(() => {
+                      ele.css('display','none');
+                    }, 300);
+                    
+
                     animalRun();  
                 }else{                    
-                  ele.text(i++);
+                  ele.text(i--);
                 }                
             },1000);    
 
@@ -245,7 +250,7 @@
     <button onClick="window.location.reload();"
     style="position: sticky;top: 100px; left:0px;">
       Replay</button>
-    <div> <h1 class="time" style="color: red; font-size: 70px; margin-top: 0;padding: 50px;text-align: center;"></h1></div>
+    <div> <h1 class="time" style="color: red; font-size: 70px; margin-top: 300;padding: 150px;text-align: center;"></h1></div>
     <div style="position: absolute; bottom: 50px; width: 90%;">
       <div id="divTor">
           <img id = "tortoise" src="images/tortoise.png" width="50px" height="50px" style="position: absolute;bottom: 40px;">
